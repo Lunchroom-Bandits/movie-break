@@ -23,7 +23,7 @@ export default function editMoviesHTML (props) {
     </main>
       
     `;
-    }
+}
 
 
 
@@ -203,16 +203,16 @@ export function MovieEditsJS() {
 
         //this is how to arrange data to be sent to database(in an order so that we can pull it again)
         const newME = {
-                title: title,
-                rating: rating,
-                genre: genre,
+            title: title,
+            rating: rating,
+            genre: genre,
         };
 
         console.log("Movie is ready to be inserted");
         const requestOptions = {
             method: "POST",
             headers: {
-                    'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(newME)
         }

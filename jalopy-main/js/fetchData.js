@@ -6,34 +6,39 @@
  * @param request
  * @returns {Promise<{}>}
  */
-const BASE_URI = `${BACKEND_HOST}`;
+import createView from "./createView";
+
+// const BASE_URI = `${BACKEND_HOST}`;
 
 export default function fetchData(state, request) {
     const promises = [];
+    const baseUri = "http:localhost:9001";
+
     //TODO: this needs to be moved to a prop file or env variable
 
-    console.log("got to fetch data");
+    // console.log("got to fetch data");
     for (let pieceOfState of Object.keys(state)) {
-        let url = BASE_URI + state[pieceOfState];
-        if(typeof state[pieceOfState] !== "string") {
-            url = BASE_URI + state[pieceOfState].url;
-            if (url.length > 4 && url.substring(0, 4) === "http") {
-                url = state[pieceOfState].url;
-            }
-            if(state[pieceOfState].headers) {
-                request.headers = state[pieceOfState].headers;
-            }
-        } else {
-            // API endpoints that start with http ignore BASE_URI and the request options
-            // TODO: they can bring their own request options in from the route entry state property
-            if (state[pieceOfState].length > 4 && state[pieceOfState].substring(0, 4) === "http") {
-                url = state[pieceOfState];
-            }
-        }
-        console.log("request URL: " + url);
+        // let url = BASE_URI + state[pieceOfState];
+        // if(typeof state[pieceOfState] !== "string") {
+        //     url = BASE_URI + state[pieceOfState].url;
+        //     if (url.length > 4 && url.substring(0, 4) === "http") {
+        //         url = state[pieceOfState].url;
+        //     }
+        //     if(state[pieceOfState].headers) {
+        //         request.headers = state[pieceOfState].headers;
+        //     }
+        // } else {
+        //     // API endpoints that start with http ignore BASE_URI and the request options
+        //     // TODO: they can bring their own request options in from the route entry state property
+        //     if (state[pieceOfState].length > 4 && state[pieceOfState].substring(0, 4) === "http") {
+        //         url = state[pieceOfState];
+        //     }
+        // }
+        // console.log("request URL: " + url);
         promises.push(
-            fetch(url, request)
+            fetch(baseUri + state[pieceOfState], request)
                 .then(function (res) {
+                    // if(res.status === 400 && res.url.includes("oauth/token")){
                     return res.json();
                 }));
     }
