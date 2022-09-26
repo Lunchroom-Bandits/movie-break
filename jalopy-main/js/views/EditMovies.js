@@ -8,7 +8,7 @@ export default function editMoviesHTML (props) {
     return `
 <form class="container">
     <h1 id="h1E">Admin Page</h1>
-    <a href="https://rambunctious-cumbersome-silence.glitch.me/movies" target="_blank" >Open in new tab to view movie database</a>
+    <a href=https://localhost:9001/api/movies/" target="_blank" >Open in new tab to view movie database</a>
 
     <form>
         <input class="form-control" list="datalistOptions" id="newTInput" placeholder="Enter Title">
@@ -127,7 +127,7 @@ export function MovieEditsJS() {
             }
             //the [i] below references whatever card I am on, to modify
             const dataID = movieCardSaveBtns[i].getAttribute('data-id');
-            fetch(`https://rambunctious-cumbersome-silence.glitch.me/movies/${dataID}`, requestOptions)
+            fetch(`https://localhost:9001/api/movies/${dataID}`, requestOptions)
                 .then(function (response) {
                     if (!response.ok) {
                         console.log("add movie error: " + response.status);
@@ -162,7 +162,7 @@ export function MovieEditsJS() {
                 method: "DELETE"
             }
             const dataID = movieCardDltBtns[i].getAttribute('data-id');
-            fetch(`https://rambunctious-cumbersome-silence.glitch.me/movies/${dataID}`, requestOptions)
+            fetch(`https://localhost:9001/api/movies/${dataID}`, requestOptions)
                 .then(function (response) {
                     if (!response.ok) {
                         console.log("delete movie error: " + response.status);
@@ -216,7 +216,7 @@ export function MovieEditsJS() {
             },
             body: JSON.stringify(newME)
         }
-        fetch('https://rambunctious-cumbersome-silence.glitch.me/movies', requestOptions)
+        fetch('https://localhost:9001/api/movies', requestOptions)
             .then(function (response) {
                 if (!response.ok) {
                     console.log("add movie error: " + response.status);

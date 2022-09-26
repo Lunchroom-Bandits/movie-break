@@ -12,7 +12,7 @@ import createView from "./createView";
 
 export default function fetchData(state, request) {
     const promises = [];
-    const baseUri = "http:localhost:9001";
+    const baseUri = "https://localhost:9001";
 
     //TODO: this needs to be moved to a prop file or env variable
 
